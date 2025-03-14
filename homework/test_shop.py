@@ -1,6 +1,8 @@
 """
 Протестируйте классы из модуля homework/models.py
 """
+from dbm import error
+
 import pytest
 
 from homework.models import Product
@@ -22,19 +24,26 @@ class TestProducts:
 
     def test_product_check_quantity(self, product):
         # TODO напишите проверки на метод check_quantity
-        assert product.check_quantity(1000) is True
+        assert product.check_quantity(999) is True
 
 
 
     def test_product_buy(self, product):
         # TODO напишите проверки на метод buy
-        pass
+
+        product.buy(999)
+        assert product.quantity == 1
+
+        product.buy(1)
+        assert product.quantity == 0
+
 
     def test_product_buy_more_than_available(self, product):
         # TODO напишите проверки на метод buy,
         #  которые ожидают ошибку ValueError при попытке купить больше, чем есть в наличии
-        pass
 
+        with pytest.raises(ValueError) as exc_info:
+            product.buy(1001)
 
 class TestCart:
     """

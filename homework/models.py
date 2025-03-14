@@ -1,5 +1,3 @@
-from homework.test_shop import product
-
 
 class Product:
     """
