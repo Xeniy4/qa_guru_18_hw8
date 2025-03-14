@@ -6,6 +6,9 @@ import pytest
 from homework.models import Product
 
 
+# from homework.models import Product
+
+
 @pytest.fixture
 def product():
     return Product("book", 100, "This is a book", 1000)
@@ -19,7 +22,9 @@ class TestProducts:
 
     def test_product_check_quantity(self, product):
         # TODO напишите проверки на метод check_quantity
-        pass
+        assert product.check_quantity(1000) is True
+
+
 
     def test_product_buy(self, product):
         # TODO напишите проверки на метод buy
